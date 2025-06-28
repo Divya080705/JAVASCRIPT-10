@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+      margin: 0;
+    }
+
+    .navbar {
+      background-color:black;
+      padding: 10px;
+    }
+
+    .navbar button {
+      background: none;
+      color: white;
+      border: none;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #hero {
+      background-image: url('https://i.pinimg.com/736x/1e/49/36/1e493676f26a43908e404f8e7e4a6cfc.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      color: white;
+      position: relative;
+    }
+
+    #hero h2 {
+      margin-top: 80px;
+    }
+
+    .corner-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #heroPrev { 
+      left: 10px; 
+    }
+    #heroNext {
+       right: 10px; 
+      }
+
+    .movie-box {
+      display: inline-block;
+      background-color: #333;
+      margin: 10px;
+      padding: 10px;
+      width: 180px;
+    }
+
+    .movie-box img {
+      width: 100%;
+      height: 250px;
+    }
+
+    #popcorn {
+      position: relative;
+    }
+
+    #popImg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .popcorn-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #popPrev { 
+      left: 10px; 
+    }
+    #popNext { 
+      right: 10px;
+     }
+
+    .faq {
+      background-color:black;
+      padding: 10px;
+      margin: 10px auto;
+      text-align: left;
+      max-width: 400px;
+    }
+
+    .faq-question {
+      color: green;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      color: lightgray;
+    }
+
+    footer {
+      background-color:black;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    footer h3 {
+      color:green;
+    }
+
+    footer p, footer label, footer input, footer button {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    footer input[type="text"] {
+      padding: 5px;
+    }
+
+    footer button {
+      padding: 5px 10px;
+      background-color:green;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer a {
+      color:green;
+      text-decoration: none;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      width: 100%;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <button onclick="showSection('hero')">Home</button>
+    <button onclick="showSection('movieSearch')">TV Shows</button>
+    <button onclick="showSection('movieSearch')">Movies</button>
+    <button onclick="showSection('popcorn')">Upcoming</button>
+  </div>
+
+  <div id="hero">
+    <button id="heroPrev" class="corner-btn" onclick="prevHero()">←</button>
+    <button id="heroNext" class="corner-btn" onclick="nextHero()">→</button>
+    <h2>Bringing the big screen to your screen</h2>
+    <p>Discover and celebrate movies</p>
+  </div>
+
+  <div id="movieSearch">
+    <h1>Movie Search</h1>
+    <input type="text" id="movieName" placeholder="Enter movie name">
+    <button onclick="getMovie()">Search</button>
+    <div id="result"></div>
+    <br>
+    <button onclick="goToPage(1)">1</button>
+    <button onclick="goToPage(2)">2</button>
+    <button onclick="goToPage(3)">3</button>
+    <br><br>
+  </div>
+
+  <div id="popcorn">
+    <h2>Popcorn Time!</h2>
+    <button id="popPrev" class="popcorn-btn" onclick="prevPop()">←</button>
+    <button id="popNext" class="popcorn-btn" onclick="nextPop()">→</button>
+    <img id="popImg" src="https://static.vecteezy.com/system/resources/previews/039/620/972/non_2x/ai-generated-movie-theater-refreshment-striped-cardboard-container-holds-movie-snack-generated-by-ai-photo.jpg">
+  </div>
+
+  <div class="faq-section">
+    <h2>FAQs</h2>
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFaq(0)">How to mark favorite?</div>
+      <div class="faq-answer">Click the heart on movie card.</div>
+    </div>
+    <div class="faq">
+      <div class="faq-question" onclick="toggleFaq(1)">Can I watch full movies here?</div>
+      <div class="faq-answer">No, only search and info available.</div>
+    </div>
+  </div>
+
+
+  <footer>
+    <div>
+      <h3>FlickFinder</h3>
+      <p>Home</p>
+      <p>About us</p>
+      <p>Contact us</p>
+    </div>
+
+    <div>
+      <h3>Products</h3>
+      <p>TV Show</p>
+      <p>Web Series</p>
+      <p>Hollywood</p>
+      <p>Bollywood</p>
+    </div>
+
+    <div>
+      <h3>Resources</h3>
+      <p>FAQs</p>
+      <p>Search Movie</p>
+    </div>
+
+    <div>
+      <h3>Newsletter</h3>
+      <input type="text" placeholder="mail@flickfinder.com"><br>
+      <label>
+        <input type="checkbox"> I agree with 
+        <a href="#">Privacy Policy</a> and 
+        <a href="#">Terms of Condition</a>
+      </label><br>
+      <button>Send</button>
+    </div>
+
+    <div class="footer-bottom">
+      ©FlickFinder 2024, All rights reserved. Developed by <a href="#">Divya</a>
+    </div>
+  </footer>
+
+
+  <script>
+    var heroImages = [
+      'https://i.pinimg.com/736x/1e/49/36/1e493676f26a43908e404f8e7e4a6cfc.jpg',
+      'https://imgix.ranker.com/user_node_img/114/2268400/original/2268400-photo-u63?auto=format&q=60&fit=crop&fm=pjpg&dpr=2&w=375',
+      'https://th.bing.com/th/id/OIP.un-Uc-roqopTR3uc1kQJmgHaK-?r=0&rs=1&pid=ImgDetMain'
+    ];
+    var heroIndex = 0;
+
+    function updateHeroImage() {
+      document.getElementById("hero").style.backgroundImage = "url('" + heroImages[heroIndex] + "')";
+    }
+
+    function nextHero() {
+      heroIndex++;
+      if (heroIndex >= heroImages.length) {
+        heroIndex = 0;
+      }
+      updateHeroImage();
+    }
+
+    function prevHero() {
+      heroIndex--;
+      if (heroIndex < 0) {
+        heroIndex = heroImages.length - 1;
+      }
+      updateHeroImage();
+    }
+
+    var currentPage = 1;
+    var currentQuery = "batman";
+
+    function getMovie() {
+      currentQuery = document.getElementById("movieName").value;
+      if (currentQuery == "") {
+        currentQuery = "batman";
+      }
+      currentPage = 1;
+      fetchMovie();
+    }
+
+    function goToPage(n) {
+      currentPage = n;
+      fetchMovie();
+    }
+
+    function fetchMovie() {
+      var script = document.createElement("script");
+      script.src = "https://www.omdbapi.com/?s=" + currentQuery + "&page=" + currentPage + "&apikey=80293bbb&callback=showMovie";
+      document.body.appendChild(script);
+    }
+
+    function showMovie(data) {
+      var result = document.getElementById("result");
+      result.innerHTML = "";
+
+      if (data.Search) {
+        for (var i = 0; i < data.Search.length; i++) {
+          var movie = data.Search[i];
+
+          var box = document.createElement("div");
+          box.className = "movie-box";
+
+          var img = document.createElement("img");
+          img.src = movie.Poster;
+
+          var title = document.createElement("h3");
+          title.innerHTML = movie.Title;
+
+          var year = document.createElement("p");
+          year.innerHTML = "Year: " + movie.Year;
+
+          box.appendChild(img);
+          box.appendChild(title);
+          box.appendChild(year);
+
+          result.appendChild(box);
+        }
+      } else {
+        result.innerHTML = "<p>No movies found</p>";
+      }
+    }
+
+    var popImages = [
+      "https://static.vecteezy.com/system/resources/previews/039/620/972/non_2x/ai-generated-movie-theater-refreshment-striped-cardboard-container-holds-movie-snack-generated-by-ai-photo.jpg",
+      "https://th.bing.com/th/id/OIP.DY6es_Y_UEYfaN-I1IxkAwHaFj?pid=ImgDet&rs=1",
+      "https://tb-static.uber.com/prod/image-proc/processed_images/87fdf5bf8bc16c1ef54031faf955425c/d24a30ada2fef6c54cef8739d94823b0.jpeg"
+    ];
+    var popIndex = 0;
+
+    function nextPop() {
+      popIndex++;
+      if (popIndex >= popImages.length) {
+        popIndex = 0;
+      }
+      document.getElementById("popImg").src = popImages[popIndex];
+    }
+
+    function prevPop() {
+      popIndex--;
+      if (popIndex < 0) {
+        popIndex = popImages.length - 1;
+      }
+      document.getElementById("popImg").src = popImages[popIndex];
+    }
+
+    function toggleFaq(n) {
+      var answers = document.getElementsByClassName("faq-answer");
+      if (answers[n].style.display == "block") {
+        answers[n].style.display = "none";
+      } else {
+        answers[n].style.display = "block";
+      }
+    }
+
+    function showSection(id) {
+      location.hash = "#" + id;
+    }
+
+    updateHeroImage();
+    fetchMovie();
+  </script>
+
+</body>
+</html>
